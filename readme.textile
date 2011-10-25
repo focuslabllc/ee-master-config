@@ -96,7 +96,7 @@ There are three possible arrays to use here. They are @$env_db@, @env_config@ an
 
 *@$env_db@*
 
-This is just for your database credentials for the environment. 
+This is just for your database credentials for the environment. *What makes this convenient is that we ignore our @config.local.php@ file from Git.* That way each local developer has their own config overrides that won't affect the main repository.
 
 <pre><code>$env_db['hostname'] = '';
 $env_db['username'] = '';
