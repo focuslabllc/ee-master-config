@@ -5,9 +5,9 @@ The purpose of this repository is to share our quick multi-environment setup for
 
 h2. Introduction
 
-At Focus Lab we work in multiple environments for every ExpressionEngine site we build. (For the sake of simplicity we'll just define an environment as "any server running an instance of your site.") In order for ExpressionEngine to support quick and easy deployments across environments, you need to use a robust config file. This is our approach to doing just that.
+At Focus Lab we work in multiple environments for every ExpressionEngine site we build. (For the sake of simplicity we'll just define an environment as "any server running an instance of your site.") In order for ExpressionEngine to support quick and easy deployments across environments, you need to use a robust config file. This is our approach to doing just that. A big strength in this approach is that we can ignore our local environment config file from Git. That way each local developer has their own config overrides that won't affect the main repository.
 
-The folder structure for a given project is as such:
+The folder structure for a given project is the following:
 
 <pre>/config
    - config.{env}.php
@@ -16,7 +16,7 @@ The folder structure for a given project is as such:
 /public_html
 /system</pre>
 
-Where @{env}@ is a shorthand hand for our environment. We typically have 4 environments. Production, Staging, Shared development & Local development. That in mind, our files are as such:
+Where @{env}@ is a shorthand hand for our environment. We typically have 4 environments. Production, Staging, Shared development & Local development. That in mind, our files are:
 
 <pre>config.dev.php
 config.env.php
