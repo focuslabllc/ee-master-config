@@ -15,7 +15,7 @@
  * admin.php files. This means the constant is available at all times in the APP page loads.
  * 
  * All config files are stored in the ./config/ directory and this master file is "required"
- * in system/expressionengine/config/config.php and system/expressionengine/config/config.php
+ * in system/expressionengine/config/config.php and system/expressionengine/config/database.php
  * 
  * require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.master.php';
  * 
