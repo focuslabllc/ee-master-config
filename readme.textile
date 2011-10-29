@@ -85,7 +85,7 @@ You can find a list of available configuration override options here on the EE W
 
 *Global Variables*
 
-You can define a set of template global variables in the @config.master.php@ file as well. Around line @220@ you will see that there are 2 variables available as an example. You can add anything here that you prefer, such as default date format strings etc.
+You can define a set of template global variables in the @config.master.php@ file as well. Around line @232@ you will see that there are 2 variables available as an example. You can add anything here that you prefer, such as default date format strings etc.
 
 
 h3. Environment-Specific Config
