@@ -11,8 +11,7 @@
  * 
  * Some config settings are used in multiple (but not all) environments. You will
  * see the use of conditionals around the ENV constant in this file. This constant is
- * defined in ./config/config.env.php which is required in the front-end index.php and the CP
- * admin.php files. This means the constant is available at all times in the APP page loads.
+ * defined in ./config/config.env.php
  * 
  * All config files are stored in the ./config/ directory and this master file is "required"
  * in system/expressionengine/config/config.php and system/expressionengine/config/database.php
@@ -24,10 +23,18 @@
  * @link       http://ee-garage.com/nsm-config-bootstrap
  * 
  * @package    Focus Lab Master Config
- * @version    1.1
+ * @version    1.1.1
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
  * @see        https://github.com/focuslabllc/ee-master-config
  */
+
+
+// Require our environment declatation file if it hasn't
+// already been loaded in index.php or admin.php
+if ( ! defined('ENV'))
+{
+	require 'config.env.php'; 
+}
 
 
 // Setup our initial arrays
@@ -51,7 +58,7 @@ if (isset($db['expressionengine']))
 	 * @see config/config.stage.php
 	 * @see config/config.prod.php
 	 */
-	require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.' . ENV . '.php';
+	require 'config.' . ENV . '.php';
 	
 	// Dynamically set the cache path (Shouldn't this be done by default? Who moves the cache path?)
 	$env_db['cachedir'] = APPPATH . 'cache/db_cache/';
@@ -116,8 +123,12 @@ if (isset($config))
 	 * Working locally we want to reference our template files.
 	 * In staging and production we do not use flat files (for ever-so-slightly better performance)
 	 * This approach requires that we synchronize templates after each deployment of template changes
+	 * 
+	 * For the distributed Focus Lab, LLC Master Config file this is commented out
+	 * You can enable this "feature" by uncommenting the second 'save_tmpl_files' line
 	 */
-	$env_config['save_tmpl_files']           = (ENV == 'prod') ? 'n' : 'y';
+	$env_config['save_tmpl_files']           = 'y';
+	// $env_config['save_tmpl_files']           = (ENV == 'prod') ? 'n' : 'y';
 	$env_config['tmpl_file_basepath']        = $base_path . '/../templates';
 	$env_config['hidden_template_indicator'] = '_'; 
 

@@ -6,7 +6,7 @@
  * Our database credentials and any environment-specific overrides
  * 
  * @package    Focus Lab Master Config
- * @version    1.1
+ * @version    1.1.1
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
  */
 

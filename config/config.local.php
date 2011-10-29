@@ -7,7 +7,7 @@
  * This file should be specific to each developer and not tracked in Git
  * 
  * @package    Focus Lab Master Config
- * @version    1.1
+ * @version    1.1.1
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
  */
 
