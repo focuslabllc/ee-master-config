@@ -214,7 +214,8 @@ if (isset($config))
 	require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.' . ENV . '.php';
 
 
-
+	// We will never change this! Ever Ever!
+	$env_config['subclass_prefix'] = "EE_";
 
 	/**
 	 * Setup our template-level global variables
