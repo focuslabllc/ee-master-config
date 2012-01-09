@@ -124,7 +124,7 @@ h2. Setup
 * Modify @config.env.php@ to reflect your environments and domains. You can remove and add environments as needed
 * Update each @config.{env}.php@ file with each environment's database credentials as needed
 * Create config overrides and global variables for each environment as needed
-* Add the following code to the bottom of @system/expressionengine/config/config.php@:
+* Add the following code to the bottom of @system/expressionengine/config/config.php@ (be sure not to delete other config settings already in this file):
 
 <pre><code>/**
  * Require the Focus Lab, LLC Master Config file
