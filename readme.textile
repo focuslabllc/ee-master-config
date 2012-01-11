@@ -83,6 +83,10 @@ End if</pre>
 
 You can find a list of available configuration override options here on the EE Wiki page "EE 2 Config Overrides":http://expressionengine.com/wiki/EE_2_Config_Overrides. You can alternatively find individual setting array keys by "inspecting" elements within EE's Control Panel and taking note of the input names. Third party developers may also include config override support in their add-ons.
 
+*Templates Settings*
+
+You can now change the location of your templates directory. Find @$env_config['tmpl_file_basepath']@ around line @132@ in the @config.master.php@ and change the value as needed.
+
 *Global Variables*
 
 You can define a set of template global variables in the @config.master.php@ file as well. Around line @232@ you will see that there are 2 variables available as an example. You can add anything here that you prefer, such as default date format strings etc.
