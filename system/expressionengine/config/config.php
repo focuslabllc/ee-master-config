@@ -24,6 +24,9 @@ $config['site_label']     = 'Your Company';
 // Numerous CodeIgniter config settings go here. We've removed
 // them for breviety in our repository code example
 // 
+// DO NOT DELETE THE CONFIG SETTINGS THAT WOULD TYPICALLY APPEAR
+// HERE. THEY ARE CodeIgniter SETTINGS REQUIRED TO RUN EE PROPERLY
+// 
 // The config values start with "base_url" and go to "proxy_ips"
 // ---------------------------------------------------------------
 
