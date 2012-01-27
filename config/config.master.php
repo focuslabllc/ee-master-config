@@ -198,20 +198,15 @@ if (isset($config))
 	$env_config['log_referrers']               = 'n';
 	$env_config['gzip_output']                 = 'y';
 
-
-
 	/**
 	 * 3rd Party Add-on config items as needed
 	 */
 	
 
-
-
 	/**
 	 * Member-based settings
 	 */
 	$env_config['profile_trigger']          = rand(0,time()); // randomize the member profile trigger word because we'll never need it
-
 
 
 	/**
@@ -224,8 +219,6 @@ if (isset($config))
 	$env_config['word_separator']           = 'dash'; // dash|underscore
 
 
-
-
 	/**
 	 * Load our environment-specific config file
 	 * May contain override values from similar above settings
@@ -236,8 +229,6 @@ if (isset($config))
 	 * @see config/config.prod.php
 	 */
 	require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.' . ENV . '.php';
-
-
 
 
 	/**
@@ -254,8 +245,11 @@ if (isset($config))
 	
 	// Start our array with environment variables. This gives us {global:env} and {global:env_full} tags for our templates.
 	$master_global = array(
-		'global:env'      => ENV,
-		'global:env_full' => ENV_FULL
+		'global:env'       => ENV,
+		'global:env_full'  => ENV_FULL,
+		'global:year'      => "{current_time format='%Y'}",
+		'global:full_date' => "{current_time format='%l, %F %d, %Y'}",
+		'global:full_uri'  => $_SERVER['REQUEST_URI']
 	);
 
 
@@ -275,6 +269,53 @@ if (isset($config))
 	
 }
 // End if (isset($config)) {}
+
+/*
+|--------------------------------------------------------------------------
+| CE Image Basic Config Items
+|--------------------------------------------------------------------------
+|
+| The following items are for use with CE Image. They are all optional,
+| as the defaults in the actual plugin will be used if not specified below.
+*/
+/*
+| The *relative path* (to your web root) of the directory to cache images
+| in. This path will override the $cache_dir variable in the plugin file,
+| and can optionally be overridden via the cache_dir= plugin parameter.
+*/
+// $config['ce_image_cache_dir'] = '/assets/images/made/';
+/*
+| The *relative path* (to your web root) of the folder to download remote
+| images. This path will override the $remote_dir variable in the plugin
+| file, and can optionally be overridden via the remote_dir= plugin
+| parameter.
+*/
+// $config['ce_image_remote_dir'] = '/assets/images/remote/';
+/*
+| The ce_image_memory_limit sets the amount of memory (in megabytes) PHP can
+| use for the script (64 is generally sufficient). If the PHP memory_limit
+| is set to a greater value, then this setting will not override it.
+*/
+// $config['ce_image_memory_limit'] = 64;
+/*
+| If the plugin cannot determine the last change date of a remote image,
+| wait this long (in minutes) before re-downloading the image:
+*/
+// $config['ce_image_remote_cache_time'] = 1440;
+/*
+| The default quality to save a jpg/jpeg file. The quality can range from
+| 0 (lowest) to 100 (highest) and should be a whole number.
+*/
+// $config['ce_image_quality'] = 100;
+/*
+| By default, CE Image runs images that are downloaded from remote sites
+| through an XSS filter. The filter sometimes gives false negatives though.
+| If you know and trust the source of your images, you can disable the
+| filter by default. You can always override this per tag via the
+| disable_xss_check= parameter.
+*/
+// $config['ce_image_disable_xss_check'] = 'yes';
+// END CE Image basic config items
 
 
 /* End of file config.master.php */
