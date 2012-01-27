@@ -125,14 +125,18 @@ if (isset($config))
 	 */
 	// $env_config['upload_preferences'] = array(
 	//     1 => array(
-	//         'name'        => 'Default Uploads',
-	//         'server_path' => $images_path . '/uploads',
-	//         'url'         => $images_url  . '/uploads/'
+	//			'name'			=> 'Default Uploads',
+	//			'server_path'	=> $images_path . '/uploads',
+	//			'url'			=> $images_url  . '/uploads/',
+	//			'allowed_types'	=> 'img', // or 'all'
+	//			'max_size'		=> '50000' // max file size in bytes
 	//     ),
 	//     2 => array(
-	//         'name'        => 'Second Folder',
-	//         'server_path' => $images_path . '/another_one',
-	//         'url'         => $images_url  . '/another_one/'
+	//			'name'			=> 'Second Folder',
+	//			'server_path'	=> $images_path . '/another_one',
+	// 			'url'			=> $images_url  . '/another_one/',
+	//			'allowed_types'	=> 'img', // or 'all'
+	//			'max_size'		=> '50000' // max file size in bytes
 	//     )
 	// );
 
