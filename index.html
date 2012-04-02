@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Focus Lab's EE Master Config by focuslabllc</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Focus Lab's EE Master Config</h1>
+        <p>Focus Lab's Master Config setup for quick ExpressionEngine multi-environment support</p>
+        <p class="view"><a href="https://github.com/focuslabllc/ee-master-config">View the Project on GitHub <small>focuslabllc/ee-master-config</small></a></p>
+        <ul>
+          <li><a href="https://github.com/focuslabllc/ee-master-config/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/focuslabllc/ee-master-config/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/focuslabllc/ee-master-config">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Introduction</h2>
+
+<p>At Focus Lab we work in multiple environments for every ExpressionEngine site we build. (For the sake of simplicity we'll just define an environment as "any server running an instance of your site.") In order for ExpressionEngine to support quick and easy deployments across environments, you need to use a robust config file. This is our approach to doing just that. A big strength in this approach is that we can ignore our local environment config file from Git. That way each local developer has their own config overrides that won't affect the main repository.</p>
+
+<p>The folder structure for a given project is the following:</p>
+
+<pre><code>/config
+   - config.{env}.php
+   - config.env.php
+   - config.master.php
+/public_html
+/system
+</code></pre>
+
+<p>Where <code>{env}</code> is a shorthand hand for our environment. We typically have 4 environments. Production, Staging, Shared development &amp; Local development. That in mind, our files are:</p>
+
+<pre><code>config.dev.php
+config.env.php
+config.local.php
+config.master.php
+config.prod.php
+config.stage.php
+</code></pre>
+
+<h2>Concept</h2>
+
+<p>There are three primary pieces to this structure. Environment declaration, master config values &amp; environment-specific config values.</p>
+
+<h3>Environment Declaration</h3>
+
+<p>This file is the starting point of your environment setup. Based on the <code>HTTP_HOST</code> variable in PHP we define the environment (this may change if you're using a load balance environment or EE's MSM module). This is handled in the <code>config.env.php</code> file.</p>
+
+<p>We approach the environment from the top down. We define all environments based on the domain and then set our default to "local" which allows our local developers to use whatever domain they choose (eg: mysite.dev, mysite.local, etc).</p>
+
+<p>Three constants are defined in our environment declaration file. They are:</p>
+
+<ul>
+<li><code>ENV</code></li>
+<li><code>ENV_FULL</code></li>
+<li><code>ENV_DEBUG</code></li>
+</ul><h4><code>ENV</code></h4>
+
+<p>This is the short-hand name of your environment. It needs to directly reflect the naming convention of your environment-specific file (seen below) such as <code>config.local.php</code>. This value is used as a conditional occasionally in the master config file.</p>
+
+<h4><code>ENV_FULL</code></h4>
+
+<p>This is the full name of your environment. There are no requirements on this value. We simply use it in our templates from time to time ("You are currently in the <em>Staging</em> environment").</p>
+
+<h4><code>ENV_DEBUG</code></h4>
+
+<p>This is our boolean debug flag used frequently in our master config file. It allows us to keep debug settings "on" in specific environments. You can see how this is used in the master config file.</p>
+
+<h3>Master Config file</h3>
+
+<p>Our <code>config.master.php</code> file contains the bulk of the data for our setup. These are default configuration settings for our EE projects. Here we break up config settings into logical groups and add/remove as needed per project. In plain English, this is what the <code>config.master.php</code> document does/says:</p>
+
+<pre><code>If EE is looking for database credentials
+    Load our environment-specific file (eg: config.prod.php)
+    Define our DB cache directory
+    Merge our expressionengine/config/database.php array with our environment-specific db array
+    Unset our environment-specific array now that it's been used as needed
+End if
+
+If EE is looking for config array values
+    Define our base paths (as inspired by Matt Weinberg)
+    Define our template config settings
+    Define our Debug settings
+    Define our Performance-impacting settings
+    Define any 3rd party settings
+    Define any member-specific settings
+    Define some final, miscellaneous settings
+    Load our environment-specific config file (eg: config.prod.php)
+    Setup some global variables for template use: {global:env} and {global:env_full}
+    Merge our Global Variables arrays then our Config arrays
+End if
+</code></pre>
+
+<h4>Override Options</h4>
+
+<p>You can find a list of available configuration override options here on the EE Wiki page <a href="http://expressionengine.com/wiki/EE_2_Config_Overrides">EE 2 Config Overrides</a>. You can alternatively find individual setting array keys by "inspecting" elements within EE's Control Panel and taking note of the input names. Third party developers may also include config override support in their add-ons.</p>
+
+<h4>Templates Settings</h4>
+
+<p>You can now change the location of your templates directory. Find <code>$env_config['tmpl_file_basepath']</code> around line <code>132</code> in the <code>config.master.php</code> and change the value as needed.</p>
+
+<h4>Global Variables</h4>
+
+<p>You can define a set of template global variables in the <code>config.master.php</code> file as well. Around line <code>232</code> you will see that there are 2 variables available as an example. You can add anything here that you prefer, such as default date format strings etc.</p>
+
+<h3>Environment-Specific Config</h3>
+
+<p>The final piece to the equation is the environment-specific file. This file include the database credentials and any desired config overrides or global variables. This is the simplest and shortest of the three files.</p>
+
+<p>There are three possible arrays to use here. They are <code>$env_db</code>, <code>env_config</code> and <code>$env_global</code>.</p>
+
+<h4><code>$env_db</code></h4>
+
+<p>This is just for your database credentials for the environment. <strong>What makes this convenient is that we ignore our <code>config.local.php</code> file from Git.</strong> That way each local developer has their own config overrides that won't affect the main repository.</p>
+
+<pre><code>$env_db['hostname'] = '';
+$env_db['username'] = '';
+$env_db['password'] = '';
+$env_db['database'] = '';
+</code></pre>
+
+<h4><code>$env_config</code></h4>
+
+<p>This array allows you to override any config value from EE or from the master config file. This is useful for changing things that may be unique to a test environment. A good example would be the <strong>webmaster_email</strong> setting. If a single developer wants to receive all system emails to themselves when developing locally, they might use the following:</p>
+
+<pre><code>$env_config['webmaster_email'] = 'me`domain.com';
+</code></pre>
+
+<h4><code>$env_global</code></h4>
+
+<p>This array is for defining global variables available within your EE templates. An example of how this can be used is the idea of using Google Analytics (GA) to track stats on your site. In the past we've used GA for tracking Staging and Production environments separately. Doing this was simple because we could define the GA key per-environment as needed.</p>
+
+<pre><code>$env_global['global:google_analytics'] = 'UA-XXXXXXX-XX';
+</code></pre>
+
+<p>This gives you variables like <code>{global:google_analytics}</code> in your EE templates.</p>
+
+<h2>Setup</h2>
+
+<ul>
+<li>Copy the <code>/config</code> directory to the same directory level as your <code>system</code> directory <a href="http://expressionengine.com/user_guide/installation/best_practices.html#moving-the-system-directory-above-webroot">we recommend "above web root"</a>)</li>
+<li>Modify <code>config.env.php</code> to reflect your environments and domains. You can remove and add environments as needed</li>
+<li>Update each <code>config.{env}.php</code> file with each environment's database credentials as needed</li>
+<li>Create config overrides and global variables for each environment as needed</li>
+<li>Add the following code to the bottom of <code>system/expressionengine/config/config.php</code> (be sure not to delete other config settings already in this file):</li>
+</ul><pre><code>/**
+ * Require the Focus Lab, LLC Master Config file
+ */
+require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.master.php';
+
+
+/* End of file config.php */
+/* Location: ./system/expressionengine/config/config.php */
+</code></pre>
+
+<ul>
+<li>Replace the contents of your <code>system/expressionengine/config/database.php</code> file with the contents in of the same file in this repository</li>
+</ul><h2>Contributions</h2>
+
+<p>If you're interested in making this better please feel free to <a href="http://help.github.com/fork-a-repo/">fork</a> the code <a href="https://github.com/focuslabllc/ee-master-config">on GitHub</a> and send <a href="http://help.github.com/send-pull-requests/">pull requests</a>. Also, we'd love to track any potential issues through the repository's <a href="https://github.com/focuslabllc/ee-master-config/issues">Issues tracker</a>.</p>
+
+<h2>Support</h2>
+
+<p>We are happy to answer questions as needed and able, but there is no official support for using this config setup. Use it at your own risk with the understanding that our responses to any inquires will fall behind any commitments we may have at the time.</p>
+
+<p><strong>We are also available for private consultation if you would like assistance getting this setup for your EE site.</strong></p>
+
+<p><a href="mailto:dev@focuslabllc.com">dev@focuslabllc.com</a></p>
+
+<h2>Legal</h2>
+
+<h3>Disclaimer Of Warranty</h3>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF QUALITY, PERFORMANCE, NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+
+<h3>Limitations Of Liability</h3>
+
+<p>YOU ASSUME ALL RISK ASSOCIATED WITH THE INSTALLATION AND USE OF THE SOFTWARE. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS OF THE SOFTWARE BE LIABLE FOR CLAIMS, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE. LICENSE HOLDERS ARE SOLELY RESPONSIBLE FOR DETERMINING THE APPROPRIATENESS OF USE AND ASSUME ALL RISKS ASSOCIATED WITH ITS USE, INCLUDING BUT NOT LIMITED TO THE RISKS OF PROGRAM ERRORS, DAMAGE TO EQUIPMENT, LOSS OF DATA OR SOFTWARE PROGRAMS, OR UNAVAILABILITY OR INTERRUPTION OF OPERATIONS.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/focuslabllc">focuslabllc</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
