@@ -104,7 +104,7 @@ if (isset($config))
 	$env_config['cp_url']              = $env_config['base_url'] . '/admin.php';
 	$env_config['theme_folder_path']   = $base_path   . '/themes/';
 	$env_config['theme_folder_url']    = $base_url    . '/themes/';
-	$env_config['emoticon_path']       = $images_url  . '/smileys/';
+	$env_config['emoticon_url']        = $images_url  . '/smileys/';
 	$env_config['captcha_path']        = $images_path . '/captchas/';
 	$env_config['captcha_url']         = $images_url  . '/captchas/';
 	$env_config['avatar_path']         = $images_path . '/avatars/';
