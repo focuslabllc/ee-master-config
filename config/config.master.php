@@ -215,7 +215,7 @@ if (isset($config))
 	 * Other system settings
 	 */
 	$env_config['new_version_check']        = 'n'; // no slowing my CP homepage down with this
-	$env_config['daylight_savings']         = date('I') ? 'y' : 'n'; // Autodetect DST
+	$env_config['daylight_savings']         = ((bool) date('I')) ? 'y' : 'n'; // Autodetect DST
 	$env_config['use_category_name']        = 'y';
 	$env_config['reserved_category_word']   = 'category';
 	$env_config['word_separator']           = 'dash'; // dash|underscore
