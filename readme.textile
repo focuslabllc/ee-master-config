@@ -124,6 +124,7 @@ This gives you variables like @{global:google_analytics}@ in your EE templates.
 
 h2. Setup
 
+* First, make sure you're working in an pre-existing EE install (even if you just installed EE a few minutes ago). You can't setup this config until after EE is installed.
 * Copy the @/config@ directory to the same directory level as your @system@ directory (we recommend "above web root":http://expressionengine.com/user_guide/installation/best_practices.html#moving-the-system-directory-above-webroot)
 * Modify @config.env.php@ to reflect your environments and domains. You can remove and add environments as needed
 * Update each @config.{env}.php@ file with each environment's database credentials as needed
