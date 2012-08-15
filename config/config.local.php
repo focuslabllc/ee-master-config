@@ -30,6 +30,10 @@ $env_db['database'] = '';
 // $env_db['database'] = '';
 
 
+// Path to Stash Templates
+// $env_config['stash_file_basepath'] = '';
+
+
 // Local testing email address
 $env_config['webmaster_email'] = 'me@domain.com';
 

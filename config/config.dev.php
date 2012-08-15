@@ -15,6 +15,8 @@ $env_db['username'] = '';
 $env_db['password'] = '';
 $env_db['database'] = '';
 
+// Path to Stash Templates
+// $env_config['stash_file_basepath'] = '';
 
 $env_config['webmaster_email'] = 'dev@domain.com';
 
