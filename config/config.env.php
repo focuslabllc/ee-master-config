@@ -14,7 +14,8 @@
 
 if ( ! defined('ENV'))
 {
-	switch ($_SERVER['HTTP_HOST']) {
+	switch (str_replace('www.', '', $_SERVER['HTTP_HOST']))
+	{
 		case 'domain.com' :
 			define('ENV', 'prod');
 			define('ENV_FULL', 'Production');
