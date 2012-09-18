@@ -115,9 +115,15 @@ if (isset($config))
 	$env_config['sig_img_path']        = $images_path . '/signature_attachments/';
 	$env_config['sig_img_url']         = $images_url  . '/signature_attachments/';
 	$env_config['prv_msg_upload_path'] = $images_path . '/pm_attachments/';
-	// $env_config['third_party_path']    = $base_path . '/../third_party/';
-
-
+	
+	// Third-party path
+	// $env_config['third_party_path']    = $base_path   . '/../third_party/';
+	
+	// Third-party themes path
+	// $env_config['path_third_themes']   = $base_path   . '/assets/addons/';
+	
+	// Third-party themes url
+	// $env_config['url_third_themes']    = $base_url    . '/assets/addons/';
 
 	/**
 	 * Custom upload directory paths
