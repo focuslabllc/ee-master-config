@@ -15,6 +15,9 @@ $env_db['username'] = '';
 $env_db['password'] = '';
 $env_db['database'] = '';
 
+// Path to Stash Templates
+// $env_config['stash_file_basepath'] = '';
+
 // Sample global variable for Production only
 // Can be used in templates like "{global:google_analytics}"
 $env_global['global:google_analytics'] = 'UA-XXXXXXX-XX';

@@ -16,5 +16,9 @@ $env_db['password'] = '';
 $env_db['database'] = '';
 
 
+// Path to Stash Templates
+// $env_config['stash_file_basepath'] = '';
+
+
 /* End of file config.stage.php */
 /* Location: ./config/config.stage.php */
