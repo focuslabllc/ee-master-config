@@ -142,6 +142,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.master.php';
 
 * Replace the contents of your @system/expressionengine/config/database.php@ file with the contents in of the same file in this repository
 
+h3. Above webroot vs within webroot
+
+The instructions above are for setting up the config *above* webroot (your "public_html", "htdocs", etc directory). This is recommended for security. However, if you're unable to do this due to hosting restraints Alex Ball has written about the changes necessary to support this. You can read "his step-by-step here.":http://alexball.tv/blog/using-focus-labs-master-config-in-webroot/
 
 h2. Contributions
 
