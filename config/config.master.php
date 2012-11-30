@@ -193,7 +193,7 @@ if (isset($config))
 	$env_config['enable_hit_tracking']         = 'n';
 	$env_config['enable_entry_view_tracking']  = 'n';
 	$env_config['log_referrers']               = 'n';
-	$env_config['gzip_output']                 = 'y';
+	$env_config['gzip_output']                 = 'y'; // Set to 'n' if your host is EngineHosting
 
 
 
