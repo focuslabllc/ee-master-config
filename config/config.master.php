@@ -61,7 +61,7 @@ if (isset($db['expressionengine']))
 	require 'config.' . ENV . '.php';
 	
 	// Dynamically set the cache path (Shouldn't this be done by default? Who moves the cache path?)
-	$env_db['cachedir'] = APPPATH . 'cache/db_cache/';
+	$env_db['cachedir'] = APPPATH . 'cache/';
 	
 	// Merge our database setting arrays
 	$db['expressionengine'] = array_merge($db['expressionengine'], $env_db);
