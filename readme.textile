@@ -161,10 +161,6 @@ h2. Support
 
 We are happy to answer questions as needed and able, but there is no official support for using this config setup. Use it at your own risk with the understanding that our responses to any inquires will fall behind any commitments we may have at the time.
 
-*We are also available for private consultation if you would like assistance getting this setup for your EE site.*
-
-dev@focuslabllc.com
-
 
 h2. Legal
 
