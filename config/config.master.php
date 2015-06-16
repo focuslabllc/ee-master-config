@@ -127,12 +127,12 @@ if (isset($config))
 	// $env_config['upload_preferences'] = array(
 	//     1 => array(
 	//         'name'        => 'Default Uploads',
-	//         'server_path' => $images_path . '/uploads',
+	//         'server_path' => $images_path . '/uploads/',
 	//         'url'         => $images_url  . '/uploads/'
 	//     ),
 	//     2 => array(
 	//         'name'        => 'Second Folder',
-	//         'server_path' => $images_path . '/another_one',
+	//         'server_path' => $images_path . '/another_one/',
 	//         'url'         => $images_url  . '/another_one/'
 	//     )
 	// );
