@@ -19,24 +19,28 @@ if ( ! defined('ENV'))
 			define('ENV', 'prod');
 			define('ENV_FULL', 'Production');
 			define('ENV_DEBUG', FALSE);
+			define('ENV_SYSTEM_ON', TRUE);
 		break;
 		
 		case 'staging.domain.com' :
 			define('ENV', 'stage');
 			define('ENV_FULL', 'Staging');
 			define('ENV_DEBUG', FALSE);
+			define('ENV_SYSTEM_ON', FALSE);
 		break;
 		
 		case 'dev.domain.com' :
 			define('ENV', 'dev');
 			define('ENV_FULL', 'Development');
 			define('ENV_DEBUG', TRUE);
+			define('ENV_SYSTEM_ON', TRUE);
 		break;
 
 		default :
 			define('ENV', 'local');
 			define('ENV_FULL', 'Local');
 			define('ENV_DEBUG', TRUE);
+			define('ENV_SYSTEM_ON', TRUE);
 		break;
 	}
 }

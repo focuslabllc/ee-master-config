@@ -161,7 +161,7 @@ if (isset($config))
 	 * These settings are helpful to have in one place
 	 * for debugging purposes
 	 */
-	$env_config['is_system_on']         = 'y';
+	$env_config['is_system_on']         = (ENV_SYSTEM_ON) ? 'y' : 'n';
 	$env_config['allow_extensions']     = 'y';
 	$env_config['email_debug']          = (ENV_DEBUG) ? 'y' : 'n' ;
 	// If we're not in production show the profile on the front-end but not in the CP
