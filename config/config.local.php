@@ -7,31 +7,25 @@
  * This file should be specific to each developer and not tracked in Git
  * 
  * @package    Focus Lab Master Config
- * @version    1.1.1
+ * @version    2.1.1
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
  */
 
-
-// Local db
-$env_db['hostname'] = 'localhost';
-$env_db['username'] = '';
-$env_db['password'] = '';
-$env_db['database'] = '';
-
-/**
- * Remote db - typically a shared development database
- * 
- * Putting this below the local settings allows us to easily uncomment the
- * lines to connect to a secondary connection, overriding the first settings
- */
-// $env_db['hostname'] = 'domain.com';
-// $env_db['username'] = '';
-// $env_db['password'] = '';
-// $env_db['database'] = '';
+$env_config['database'] = array (
+	'expressionengine' => array (
+		'hostname' => 'localhost',
+		'username' => '',
+		'password' => '',
+		'database' => '',
+		'dbdriver' => 'mysqli',
+		'dbprefix' => 'exp_',
+		'pconnect' => FALSE
+	),
+);
 
 
 // Local testing email address
-$env_config['webmaster_email'] = 'me@domain.com';
+$env_config['webmaster_email'] = '';
 
 
 /* End of file config.local.php */

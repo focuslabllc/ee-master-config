@@ -11,11 +11,10 @@
 |
 */
 
-$config['app_version']    = '2xx';
-$config['install_lock']   = '';
-$config['license_number'] = 'xxxx-xxxx-xxxx-xxxx';
-$config['doc_url']        = 'http://expressionengine.com/user_guide/';
-$config['site_label']     = 'Your Company';
+$config['app_version'] = '3xx';
+$config['cp_url'] = 'http://example.com/admin.php';
+$config['doc_url'] = 'https://ellislab.com/expressionengine/user-guide/';
+$config['site_label'] = '';
 // END EE config items
 
 
