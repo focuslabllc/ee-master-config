@@ -1,4 +1,4 @@
-h1. Focus Lab LLC's EE Master Config
+h1. Focus Lab LLC's EE Master Config (EE3)
 
 The purpose of this repository is to share our quick multi-environment setup for ExpressionEngine 3. We use this on every EE project to quickly and easily get support for multiple servers setup. This enables us to deploy any of our sites to any server with minimal changes or updates to any code or settings.
 
@@ -59,14 +59,7 @@ h3. Master Config file
 
 Our @config.master.php@ file contains the bulk of the data for our setup. These are default configuration settings for our EE projects. Here we break up config settings into logical groups and add/remove as needed per project. In plain English, this is what the @config.master.php@ document does/says:
 
-<pre>If EE is looking for database credentials
-	Load our environment-specific file (eg: config.prod.php)
-	Define our DB cache directory
-	Merge our expressionengine/config/database.php array with our environment-specific db array
-	Unset our environment-specific array now that it's been used as needed
-End if
-
-If EE is looking for config array values
+<pre>If EE is looking for config array values
 	Define our base paths (as inspired by Matt Weinberg)
 	Define our template config settings
 	Define our Debug settings
