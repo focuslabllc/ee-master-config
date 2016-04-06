@@ -2,6 +2,8 @@ h1. Focus Lab LLC's EE Master Config
 
 The purpose of this repository is to share our quick multi-environment setup for ExpressionEngine 2. We use this on every EE project to quickly and easily get support for multiple servers setup. This enables us to deploy any of our sites to any server with minimal changes or updates to any code or settings.
 
+_This branch is for EE2. If you'd like the EE3 Master Config check out "the EE3 branch.":https://github.com/focuslabllc/ee-master-config/tree/EE3_
+
 
 h2. Introduction
 
