@@ -64,7 +64,30 @@ if (isset($db['expressionengine']))
 	$env_db['cachedir'] = APPPATH . 'cache/';
 	
 	// Merge our database setting arrays
-	$db['expressionengine'] = array_merge($db['expressionengine'], $env_db);
+	if(isset($env_db['expressionengine'])) //looks like we're dealing with multiple dbs
+	{
+		foreach($env_db AS $key => $value)
+		{
+			if(!isset($db[$key]))
+			{
+				$db[$key] = array();
+			}
+			
+			if(is_array($env_db[$key]))
+			{
+				$db[$key] = array_merge($db[$key], $env_db[$key]);
+			}
+			else
+			{
+				$db[$key] = $env_db[$key];
+			}
+		}
+	}
+	else
+	{
+		//default single DB
+		$db['expressionengine'] = array_merge($db['expressionengine'], $env_db);
+	}
 	
 	// No need to have this variable accessible for the rest of the app
 	unset($env_db);
