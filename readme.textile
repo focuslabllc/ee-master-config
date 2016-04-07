@@ -44,6 +44,7 @@ Three constants are defined in our environment declaration file. They are:
 * @ENV@
 * @ENV_FULL@
 * @ENV_DEBUG@
+* @ENV_SYSTEM_ON@
 
 *@ENV@*
 
@@ -56,6 +57,10 @@ This is the full name of your environment. There are no requirements on this val
 *@ENV_DEBUG@*
 
 This is our boolean debug flag used frequently in our master config file. It allows us to keep debug settings "on" in specific environments. You can see how this is used in the master config file.
+
+*@ENV_SYSTEM_ON@*
+
+This allows us to switch the system on, or off, in specific environments. You can see how this is used in the environment config file.
 
 h3. Master Config file
 
