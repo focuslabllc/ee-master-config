@@ -57,7 +57,7 @@ if (isset($config))
 	 * As inspired by Matt Weinberg: http://eeinsider.com/articles/multi-server-setup-for-ee-2/
 	 */
 	$protocol                          = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
-	$base_url                          = $protocol . $_SERVER['HTTP_HOST'];
+	$base_url                          = $protocol . ENV_DOMAIN;
 	$base_path                         = $_SERVER['DOCUMENT_ROOT'];
 	$system_folder                     = APPPATH . '../';
 	$images_folder                     = 'images';

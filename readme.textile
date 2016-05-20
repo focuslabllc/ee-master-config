@@ -35,13 +35,16 @@ h3. Environment Declaration
 
 This file is the starting point of your environment setup. Based on the @HTTP_HOST@ variable in PHP we define the environment (this may change if you're using a load balance environment or EE's MSM module). This is handled in the @config.env.php@ file.
 
+You should *never* use @HTTP_HOST@ to define the actual domain of your site. Someone could use a header to change the value of @HTTP_HOST@ which would cause *all* of your URLs to go to a domain of their choosing. For more details, take a look at "this article":http://carlos.bueno.org/2008/06/host-header-injection.html.
+
 We approach the environment from the top down. We define all environments based on the domain and then set our default to "local" which allows our local developers to use whatever domain they choose (eg: mysite.dev, mysite.local, etc).
 
-Three constants are defined in our environment declaration file. They are:
+Four constants are defined in our environment declaration file. They are:
 
 * @ENV@
 * @ENV_FULL@
 * @ENV_DEBUG@
+* @ENV_DOMAIN@
 
 *@ENV@*
 
@@ -54,6 +57,10 @@ This is the full name of your environment. There are no requirements on this val
 *@ENV_DEBUG@*
 
 This is our boolean debug flag used frequently in our master config file. It allows us to keep debug settings "on" in specific environments. You can see how this is used in the master config file.
+
+*@ENV_DOMAIN@*
+
+This is the domain of your environment. It must contain the domain (e.g. www.example.com or staging.example.com) for your environment.
 
 h3. Master Config file
 
