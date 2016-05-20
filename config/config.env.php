@@ -2,13 +2,13 @@
 
 /**
  * Environment Declaration
- * 
+ *
  * This switch statement sets our environment. The environment is used primarily
  * in our custom config file setup. It is also used, however, in the front-end
  * index.php file and the back-end admin.php file to set the debug mode
- * 
+ *
  * @package    Focus Lab Master Config
- * @version    2.1.1
+ * @version    2.2.0
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
  */
 
