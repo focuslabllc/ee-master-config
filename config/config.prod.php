@@ -2,11 +2,11 @@
 
 /**
  * Production config overrides & db credentials
- * 
+ *
  * Our database credentials and any environment-specific overrides
- * 
+ *
  * @package    Focus Lab Master Config
- * @version    2.1.1
+ * @version    2.2.0
  * @author     Focus Lab, LLC <dev@focuslabllc.com>
  */
 
