@@ -131,7 +131,7 @@ if (isset($config))
 	$env_config['allow_extensions']     = 'y';
 	$env_config['email_debug']          = (ENV_DEBUG) ? 'y' : 'n' ;
 	// If we're not in production show the profile on the front-end but not in the CP
-	$env_config['show_profiler']        = ( ! ENV_DEBUG OR (isset($_GET['D']) && $_GET['D'] == 'cp')) ? 'n' : 'y' ;
+	$env_config['show_profiler']        = ( ! ENV_DEBUG OR $_SERVER['SCRIPT_NAME'] == 'admin.php') ? 'n' : 'y' ;
 	// Show template debugging if we're not in production
 	$env_config['template_debugging']   = (ENV_DEBUG) ? 'y' : 'n' ;
 	/**
