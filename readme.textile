@@ -1,6 +1,6 @@
-h1. Focus Lab LLC's EE Master Config
+h1. Focus Lab LLC's EE Master Config (EE4)
 
-The purpose of this repository is to share our quick multi-environment setup for ExpressionEngine 2. We use this on every EE project to quickly and easily get support for multiple servers setup. This enables us to deploy any of our sites to any server with minimal changes or updates to any code or settings.
+The purpose of this repository is to share our quick multi-environment setup for ExpressionEngine 4. We use this on every EE project to quickly and easily get support for multiple servers setup. This enables us to deploy any of our sites to any server with minimal changes or updates to any code or settings.
 
 _This branch is for EE2. If you'd like the EE3 Master Config check out "the EE3 branch.":https://github.com/focuslabllc/ee-master-config/tree/EE3_
 
@@ -37,13 +37,16 @@ h3. Environment Declaration
 
 This file is the starting point of your environment setup. Based on the @HTTP_HOST@ variable in PHP we define the environment (this may change if you're using a load balance environment or EE's MSM module). This is handled in the @config.env.php@ file.
 
+You should *never* use @HTTP_HOST@ to define the actual domain of your site. Someone could use a header to change the value of @HTTP_HOST@ which would cause *all* of your URLs to go to a domain of their choosing. For more details, take a look at "this article":http://carlos.bueno.org/2008/06/host-header-injection.html.
+
 We approach the environment from the top down. We define all environments based on the domain and then set our default to "local" which allows our local developers to use whatever domain they choose (eg: mysite.dev, mysite.local, etc).
 
-Three constants are defined in our environment declaration file. They are:
+Four constants are defined in our environment declaration file. They are:
 
 * @ENV@
 * @ENV_FULL@
 * @ENV_DEBUG@
+* @ENV_DOMAIN@
 
 *@ENV@*
 
@@ -57,18 +60,15 @@ This is the full name of your environment. There are no requirements on this val
 
 This is our boolean debug flag used frequently in our master config file. It allows us to keep debug settings "on" in specific environments. You can see how this is used in the master config file.
 
+*@ENV_DOMAIN@*
+
+This is the domain of your environment. It must contain the domain (e.g. www.example.com or staging.example.com) for your environment.
+
 h3. Master Config file
 
 Our @config.master.php@ file contains the bulk of the data for our setup. These are default configuration settings for our EE projects. Here we break up config settings into logical groups and add/remove as needed per project. In plain English, this is what the @config.master.php@ document does/says:
 
-<pre>If EE is looking for database credentials
-	Load our environment-specific file (eg: config.prod.php)
-	Define our DB cache directory
-	Merge our expressionengine/config/database.php array with our environment-specific db array
-	Unset our environment-specific array now that it's been used as needed
-End if
-
-If EE is looking for config array values
+<pre>If EE is looking for config array values
 	Define our base paths (as inspired by Matt Weinberg)
 	Define our template config settings
 	Define our Debug settings
@@ -83,11 +83,7 @@ End if</pre>
 
 *Override Options*
 
-You can find a list of available configuration override options here on the EE Wiki page "EE 2 Config Overrides":http://expressionengine.com/wiki/EE_2_Config_Overrides. You can alternatively find individual setting array keys by "inspecting" elements within EE's Control Panel and taking note of the input names. Third party developers may also include config override support in their add-ons.
-
-*Templates Settings*
-
-You can now change the location of your templates directory. Find @$env_config['tmpl_file_basepath']@ around line @132@ in the @config.master.php@ and change the value as needed.
+You can find a list of available configuration override options here on the EE Wiki page "EE 4 Config Overrides":https://docs.expressionengine.com/latest/general/system_configuration_overrides.html. You can alternatively find individual setting array keys by "inspecting" elements within EE's Control Panel and taking note of the input names. Third party developers may also include config override support in their add-ons.
 
 *Global Variables*
 
@@ -104,10 +100,17 @@ There are three possible arrays to use here. They are @$env_db@, @env_config@ an
 
 This is just for your database credentials for the environment. *What makes this convenient is that we ignore our @config.local.php@ file from Git.* That way each local developer has their own config overrides that won't affect the main repository.
 
-<pre><code>$env_db['hostname'] = '';
-$env_db['username'] = '';
-$env_db['password'] = '';
-$env_db['database'] = '';</code></pre>
+<pre><code>$config['database'] = array (
+	'expressionengine' => array (
+		'hostname' => 'localhost',
+		'username' => '',
+		'password' => '',
+		'database' => '',
+		'dbdriver' => 'mysqli',
+		'dbprefix' => 'exp_',
+		'pconnect' => FALSE
+	),
+);</code></pre>
 
 *@$env_config@*
 
@@ -127,23 +130,19 @@ This gives you variables like @{global:google_analytics}@ in your EE templates.
 h2. Setup
 
 * First, make sure you're working in an pre-existing EE install (even if you just installed EE a few minutes ago). You can't setup this config until after EE is installed.
-* Copy the @/config@ directory to the same directory level as your @system@ directory (we recommend "above web root":http://expressionengine.com/user_guide/installation/best_practices.html#moving-the-system-directory-above-webroot)
+* Copy the @/config@ directory to the same directory level as your @system@ directory (we recommend "above web root":https://docs.expressionengine.com/latest/installation/best_practices.html)
 * Modify @config.env.php@ to reflect your environments and domains. You can remove and add environments as needed
 * Update each @config.{env}.php@ file with each environment's database credentials as needed
 * Create config overrides and global variables for each environment as needed
-* Add the following code to the bottom of @system/expressionengine/config/config.php@ (be sure not to delete other config settings already in this file):
+* Add the following code to the bottom of @system/user/config/config.php@ (be sure not to delete other config settings already in this file):
 
 <pre><code>/**
  * Require the Focus Lab, LLC Master Config file
  */
 require $_SERVER['DOCUMENT_ROOT'] . '/../config/config.master.php';
 
-
 /* End of file config.php */
 /* Location: ./system/expressionengine/config/config.php */</code></pre>
-
-* Replace the contents of your @system/expressionengine/config/database.php@ file with the contents in of the same file in this repository
-
 
 h3. Above webroot vs within webroot
 
