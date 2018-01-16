@@ -1,6 +1,6 @@
-h1. Focus Lab LLC's EE Master Config (EE3)
+h1. Focus Lab LLC's EE Master Config (EE4)
 
-The purpose of this repository is to share our quick multi-environment setup for ExpressionEngine 3. We use this on every EE project to quickly and easily get support for multiple servers setup. This enables us to deploy any of our sites to any server with minimal changes or updates to any code or settings.
+The purpose of this repository is to share our quick multi-environment setup for ExpressionEngine 4. We use this on every EE project to quickly and easily get support for multiple servers setup. This enables us to deploy any of our sites to any server with minimal changes or updates to any code or settings.
 
 
 h2. Introduction
@@ -81,7 +81,7 @@ End if</pre>
 
 *Override Options*
 
-You can find a list of available configuration override options here on the EE Wiki page "EE 3 Config Overrides":https://docs.expressionengine.com/latest/general/system_configuration_overrides.html. You can alternatively find individual setting array keys by "inspecting" elements within EE's Control Panel and taking note of the input names. Third party developers may also include config override support in their add-ons.
+You can find a list of available configuration override options here on the EE Wiki page "EE 4 Config Overrides":https://docs.expressionengine.com/latest/general/system_configuration_overrides.html. You can alternatively find individual setting array keys by "inspecting" elements within EE's Control Panel and taking note of the input names. Third party developers may also include config override support in their add-ons.
 
 *Global Variables*
 
